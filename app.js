@@ -5,8 +5,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
+//                                      <--- add require route here
 var index = require('./routes/index');
-var users = require('./routes/users');
+var wine = require('./routes/wine_routes');
+var winery = require('./routes/winery_routes');
+var variety = require('./routes/variety_routes');
+var area = require('./routes/area_routes');
+
+
+
+//
+
 
 var app = express();
 
@@ -20,10 +30,21 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//                                      <--- add .use function here
 app.use('/', index);
-app.use('/users', users);
+app.use('/wine', wine);
+app.use('/winery', winery);
+app.use('/variety', variety);
+app.use('/area', area);
+
+
+
+//
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

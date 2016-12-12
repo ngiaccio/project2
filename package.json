@@ -1,5 +1,5 @@
 {
-  "name": "project2",
+  "name": "resumewebapp",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -11,7 +11,9 @@
     "debug": "~2.2.0",
     "ejs": "~2.5.2",
     "express": "~4.14.0",
+    "less-middleware": "~2.2.0",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "mysql": "~2.5.3"
   }
 }

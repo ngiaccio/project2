@@ -1,0 +1,65 @@
+<%- include("../includes/header.ejs", {title:"Add New Wine"}); %>
+    <h1>Add New Wine</h1>
+
+    <form action="/wine/insert" method="get">
+
+        <input type="hidden" id="wine_id" name="wine_id" value="<%= wine.wine_id %>">
+
+        Select Winery:
+        <select id="winery_id" name="winery_id">
+            <% for(var i=0; winery.length > i; i++ ) { %>
+                <option value="<%= winery[i].winery_id %>"><%= winery[i].winery_name %></option>
+            <% } %>
+        </select>
+        <br />
+        <br />
+
+        Select Variety: <select id="variety_id" name="variety_id">
+            <option value="CAB">Cabernet Sauvignon</option>
+            <option value="MER">White</option>
+            <option value="ZIN">Zinfandel</option>
+            <option value="PNR">Pinot Noir</option>
+            <option value="PRT">Portified Wine (Port)</option>
+            <option value="CH">Chardonnay</option>
+            <option value="SB">Sauvignon Blanc</option>
+            <option value="PG">Pinot Grigio/Gris</option>
+            <option value="RI">Riesling</option>
+            <option value="MS">Moscato</option>
+            <option value="BLEND">Blend of Varieties</option>
+            <option value="TRDS">Traditional Sparkling</option>
+        </select>
+        <br />
+        <br />
+
+        Vintage/Year (ex- 2012): <input id="vintage" name="vintage" type="text" />
+        <br />
+        <br />
+
+        Wine Type: <select id="type" name="type">
+            <option value="Red">Red</option>
+            <option value="White">White</option>
+            <option value="Sparkling">Sparkling</option>
+            <option value="Rose">Rose</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Port">Port</option>
+            <option value="Other">Other</option>
+        </select>
+        <br />
+        <br />
+
+        Select Area:
+        <select id="area_id" name="area_id">
+            <% for(var i=0; area.length > i; i++ ) { %>
+            <option value="<%= area[i].area_id %>"><%= area[i].area_name %></option>
+            <% } %>
+        </select>
+        <br />
+        <br />
+
+        <input type="submit" />
+    </form>
+
+<br />
+<a href="/wine/all">~ Go Back ~</a>
+
+<%- include("../includes/footer.ejs"); %>

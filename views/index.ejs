@@ -1,11 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include("./includes/header.ejs", {title: title}); %>
+
+    <h1 align="center"><%= title %></h1>
+
+    <hr>
+<p>
+    Welcome to the Wine Information Database!  Here you will find and edit information...
+
+</p>
+    <hr>
+
+    <a href="/wine/all"><p style="text-align:center"> All Wines </p></a>
+
+    <a href="/winery/all"><p style="text-align:center"> Detailed Winery Information </p></a>
+
+    <a href="/variety/all"><p style="text-align:center"> Available Varieties </p></a>
+
+    <a href="/area/all"><p style="text-align:center"> Wine Locations/Areas </p></a>
+
+
+<%- include("./includes/footer.ejs"); %>

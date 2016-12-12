@@ -1,0 +1,23 @@
+<%- include("../includes/header.ejs", {title:"Variety and Variety"}); %>
+
+<h1 align="center">Available Variety Information</h1>
+
+        <br />
+<p align="center"><u>Wines stored in this database are of these Varieties:</u></p>
+        <table align="center" border="1">
+            <tr><th>~ Variety Name</th>
+            <col width="180">
+
+            <% for(var i=0; result.length > i; i++ ) { %>
+            <tr>
+                <td align="center"><%= result[i].variety_name %></td>
+            </tr>
+            <% } %>
+        </table>
+
+<br />
+<br />
+<a href="/"><p style="text-align:center">~ Back to Home ~</p></a>
+
+
+<%- include("../includes/footer.ejs"); %>

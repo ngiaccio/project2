@@ -1,0 +1,24 @@
+<%- include("../includes/header.ejs", {title:"Area - All"}); %>
+
+<h1 align="center">Available Area Information</h1>
+
+        <br />
+
+<p align="center"><u>The database currently has wines stored from these Areas:</u></p>
+    <table align="center" border="1">
+            <tr><th>~ Area Name</th>
+            <col width="180">
+
+            <% for(var i=0; result.length > i; i++ ) { %>
+            <tr>
+                <td align="center"><%= result[i].area_name %></td>
+            </tr>
+            <% } %>
+        </table>
+
+<br />
+<br />
+<a href="/"><p style="text-align:center">~ Back to Home ~</p></a>
+
+
+<%- include("../includes/footer.ejs"); %>

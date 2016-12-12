@@ -1,0 +1,33 @@
+<%- include("../includes/header.ejs", {title:"Winery - All"}); %>
+
+<h1 align="center">All Wineries</h1>
+
+        <br />
+<p align="center"><u>Here is all the information stored in the database about each Winery:</u></p>
+        <table align="center" border="1">
+            <tr><th>~ Winery Name</th><th>~ Winery Location</th><th>~ Contact Info</th><th>~ Walk Ins?</th></tr>
+            <col width="200">
+            <col width="150">
+            <col width="100">
+            <col width="100">
+            <% for(var i=0; result.length > i; i++ ) { %>
+            <tr>
+                <td align="center"><%= result[i].winery_name %></td>
+                <td align="center"><%= result[i].city %></td>
+                <td align="center"><%= result[i].phone_num %></td>
+                <td align="center">
+                    <% if (result[i].walk_ins == 1) { %>
+                    Yes <% } %>
+                    <% if (result[i].walk_ins == 0) { %>
+                    No <% } %>
+
+            </tr>
+            <% } %>
+        </table>
+
+<br />
+<br />
+<a href="/"><p style="text-align:center">~ Back to Home ~</p></a>
+
+
+<%- include("../includes/footer.ejs"); %>
