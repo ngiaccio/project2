@@ -36,22 +36,17 @@ exports.edit = function(winery_id, callback) {
 //
 //
 //
-
-/*
-
 exports.insert = function(params, callback) {
-    var query = 'INSERT INTO winery (school_name, address_id) VALUES (?, ?)';
-
-    // the question marks in the sql query above will be replaced by the values of the
-    // the data in queryData
-    var queryData = [params.school_name, params.address_id];
-
+    var query = 'insert into winery (winery_name, city, phone_num, walk_ins) values (?,?,?,?);';
+    var queryData = [params.winery_name, params.city, params.phone_num, params.walk_ins];
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
     });
-
 };
-
+//
+//
+//
+ /*
 exports.delete = function(school_id, callback) {
     var query = 'DELETE FROM winery WHERE school_id = ?';
     var queryData = [school_id];

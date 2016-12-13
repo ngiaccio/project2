@@ -1,13 +1,20 @@
 <%- include("./includes/header.ejs", {title: title}); %>
 
-    <h1 align="center"><%= title %></h1>
+    <h1 align="center">~ <%= title %> ~</h1>
 
     <hr>
-<p>
-    Welcome to the Wine Information Database!  Here you will find and edit information...
-
+<p style="text-align:center">
+    Welcome to the Wine Information Database! <br/>
+    This database holds all the information you would like to know about the wines stored within. <br/>
+    Use the links below for viewing of the data from entire tables to specified queries. <br/>
+    Diagrams of the entire database are also available below:<br/>
+    <br />
+    <a href="/images/ERD.pdf"> View ER Diagram </a>
+    <br />
+    <a href="/images/RSD.pdf"> View Relational Schema / Functional Dependency Diagrams </a>
 </p>
     <hr>
+    <p style="text-align:center"><u>~ Data Tables ~</u></p>
 
     <a href="/wine/all"><p style="text-align:center"> All Wines </p></a>
 
@@ -16,6 +23,9 @@
     <a href="/variety/all"><p style="text-align:center"> Available Varieties </p></a>
 
     <a href="/area/all"><p style="text-align:center"> Wine Locations/Areas </p></a>
+
+    <hr>
+    <p style="text-align:center"><u>~ Search Wine by Variety ~</u></p>
 
 
 <%- include("./includes/footer.ejs"); %>

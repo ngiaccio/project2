@@ -29,27 +29,19 @@ exports.insert = function(params, callback) {
     var query = 'INSERT INTO wine (winery_id, vintage, type) VALUES (?,?,?)';
     var queryData = [params.winery_id, params.vintage, params.type];
     connection.query(query, queryData, function(err, result) {
-        /*var wine_id = result.insertId;
-
         var query1 = 'INSERT INTO wine_area (area_id, wine_id) VALUES ?';
+        var queryData1 = [params.area_id, params.wine_id];
         var query2 = 'INSERT INTO wine_variety (variety_id, wine_id) VALUES ?';
+        var queryData2 = [params.variety_id, params.wine_id];
 
         // table: wine_area
-        var wa_Data = [];
-        for(var i=0; i < params.area_id.length; i++) {
-            wa_Data.push([params.wine_id, params.area_id[i]]);
-        }
-        connection.query(query1, [wa_Data], function(err, result){
+        connection.query(query1, queryData1, function(err, result){
         });
 
         // table: wine_variety
-        var wv_Data = [];
-        for(var i=0; i < params.variety_id.length; i++) {
-            wv_Data.push([params.wine_id, params.variety_id[i]]);
-        }
-        connection.query(query2, [wv_Data], function(err, result){ */
-            callback(err, result);
-//        });
+        connection.query(query2, queryData2, function(err, result){
+        });
+        callback(err, result);
     });
 };
 //

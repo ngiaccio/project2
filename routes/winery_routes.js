@@ -13,7 +13,6 @@ router.get('/all', function(req, res) {
             res.render('winery/wineryViewAll', { 'result':result });
         }
     });
-
 });
 //
 //
@@ -50,17 +49,14 @@ router.get('/edit', function(req, res){
 //
 //
 //
-
-/*
 // Return the add a new winery form
 router.get('/add', function(req, res){
-    // passing all the query parameters (req.query) to the insert function instead of each individually
-    address_dal.getAll(function(err,result) {
-        if (err) {
+    winery_dal.getAll(function(err, result){
+        if(err) {
             res.send(err);
         }
         else {
-            res.render('winery/schoolAdd', {'address': result});
+            res.render('winery/wineryAdd', { 'result':result });
         }
     });
 });
@@ -68,15 +64,21 @@ router.get('/add', function(req, res){
 // View the winery for the given id
 router.get('/insert', function(req, res){
     // simple validation
-    if(req.query.school_name == null) {
-        res.send('School Name must be provided.');
+    if(req.query.winery_name == null) {
+        res.send('A Winery Name must be entered.');
     }
-    else if(req.query.address_id == null) {
-        res.send('An Address must be selected');
+    else if(req.query.city == null) {
+        res.send('A City must be entered.');
+    }
+    else if(req.query.phone_num == null) {
+        res.send('A Phone Number must be entered.');
+    }
+    else if(req.query.walk_ins == null) {
+        res.send('Please choose if the winery is walk-in friendly or not.');
     }
     else {
         // passing all the query parameters (req.query) to the insert function instead of each individually
-        school_dal.insert(req.query, function(err,result) {
+        winery_dal.insert(req.query, function(err,result) {
             if (err) {
                 console.log(err)
                 res.send(err);
@@ -88,7 +90,10 @@ router.get('/insert', function(req, res){
         });
     }
 });
-
+//
+//
+//
+/*
 router.get('/edit', function(req, res){
     if(req.query.school_id == null) {
         res.send('A winery id is required');

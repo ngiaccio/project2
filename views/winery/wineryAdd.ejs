@@ -1,0 +1,33 @@
+<%- include("../includes/header.ejs", {title:"Add New Winery"}); %>
+    <h1>Add New Winery</h1>
+
+    <form action="/winery/insert" method="get">
+
+        <input type="hidden" id="winery_id" name="winery_id" value="<%= result.winery_id %>">
+
+        Winery Name: <input id="winery_name" name="winery_name" type="text" />
+        <br />
+        <br />
+
+        City of Location: <input id="city" name="city" type="text" />
+        <br />
+        <br />
+
+        Phone Number (Contact Info): <input id="phone_num" name="phone_num" type="text" />
+        <br />
+        <br />
+
+        Are Walk-In Appointments Welcomed? <select id="walk_ins" name="walk_ins">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+        <br />
+        <br />
+
+        <input type="submit" />
+    </form>
+
+<br />
+<a href="/winery/all">~ Go Back ~</a>
+
+<%- include("../includes/footer.ejs"); %>
