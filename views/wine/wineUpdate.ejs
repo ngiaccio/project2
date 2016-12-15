@@ -1,0 +1,21 @@
+<%- include("../includes/header.ejs", {title: "Update Wine Entry"}); %>
+
+<h1>Update Wine Entry</h1>
+<form action="/wine/update" method="get">
+    <input type="hidden" id="wine_id" name="wine_id" value="<%= wine.wine_id %>">
+
+    Select Winery: (was <%= winery.winery_name%>)
+    <br />
+    <select id="winery_id" name="winery_id">
+        <% for(var i=0; winery.length > i; i++ ) { %>
+        <option value="<%= winery[i].winery_id %>"><%= winery[i].winery_name %></option>
+        <% } %>
+    </select>
+    <br />
+    <br />
+
+    <input type="submit" />
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>

@@ -1,23 +1,36 @@
-<%- include("../includes/header.ejs", {title:"Variety and Variety"}); %>
+<%- include("../includes/header.ejs", {title:"Variety - All"}); %>
 
 <h1 align="center">Available Variety Information</h1>
 
         <br />
 <p align="center"><u>Wines stored in this database are of these Varieties:</u></p>
-        <table align="center" border="1">
-            <tr><th>~ Variety Name</th>
-            <col width="180">
+<table align="center" border="1">
+    <tr><th>~ Variety Name</th><th>~ Actions</th>
+        <col width="180">
+        <col width="75">
 
-            <% for(var i=0; result.length > i; i++ ) { %>
-            <tr>
-                <td align="center"><%= result[i].variety_name %></td>
-            </tr>
-            <% } %>
-        </table>
+        <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+
+        <td align="center"><%= result[i].variety_name %></td>
+
+        <td align="center">
+            <form action="/variety/delete/" style="display:inline;" onclick="return confirm('Are you sure you want to delete <%= result[i].variety_name %> from the database?');" >
+                <input type="hidden" name="variety_id" id="variety_id" value="<%= result[i].variety_id %>" />
+                <input type="submit" value="Delete Entry"/>
+            </form>
+        </td>
+
+    </tr>
+
+    <% } %>
+
+</table>
 
 <br />
-<br />
+
+<a href="/variety/add"><p style="text-align:center">Add a New Variety to the Database</p></a>
+
 <a href="/"><p style="text-align:center">~ Back to Home ~</p></a>
-
 
 <%- include("../includes/footer.ejs"); %>

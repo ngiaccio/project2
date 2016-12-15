@@ -110,26 +110,21 @@ router.get('/edit', function(req, res){
         res.send('A wine id is required');
     }
     else {
-        wine_dal.edit(req.query.wine_id, function(err, result){
-            res.render('wine/wineUpdate', {wine: result[0][0], wine: result[1]});
+        wine_dal.getById(req.query.wine_id, function(err, wine){
+            winery_dal.getAll(function(err, winery) {
+                variety_dal.getAll(function(err, variety) {
+                    area_dal.getAll(function(err, area) {
+                        if (err) {
+                            res.send(err);
+                        }
+                        else {
+                            res.render('wine/wineUpdate', {wine: wine[0], winery: winery, variety: variety, area: area});
+                        }
+                    });
+                });
+            });
         });
     }
-
-});
-//
-//
-//
-router.get('/edit2', function(req, res){
-   if(req.query.wine_id == null) {
-       res.send('A wine id is required');
-   }
-   else {
-       wine_dal.getById(req.query.wine_id, function(err, wine){
-           wine_dal.getAll(function(err, wine) {
-               res.render('wine/wineUpdate', {wine: wine[0], wine: wine});
-           });
-       });
-   }
 });
 //
 //
@@ -146,15 +141,15 @@ router.get('/delete', function(req, res){
         res.send('wine_id is null');
     }
     else {
-         wine_dal.delete(req.query.wine_id, function(err, result){
-             if(err) {
-                 res.send(err);
-             }
-             else {
-                 //poor practice, but we will handle it differently once we start using Ajax
-                 res.redirect(302, '/wine/all');
-             }
-         });
+        wine_dal.delete(req.query.wine_id, function(err, result){
+            if(err) {
+                res.send(err);
+            }
+            else {
+                //poor practice, but we will handle it differently once we start using Ajax
+                res.redirect(302, '/wine/all');
+            }
+        });
     }
 });
 

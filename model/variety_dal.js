@@ -36,32 +36,27 @@ exports.edit = function(variety_id, callback) {
 //
 //
 //
-
-/*
-
 exports.insert = function(params, callback) {
-    var query = 'INSERT INTO variety (school_name, address_id) VALUES (?, ?)';
-
-    // the question marks in the sql query above will be replaced by the values of the
-    // the data in queryData
-    var queryData = [params.school_name, params.address_id];
-
+    var query = 'INSERT INTO variety (variety_name) VALUES (?)';
+    var queryData = [params.variety_name];
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
     });
-
 };
-
-exports.delete = function(school_id, callback) {
-    var query = 'DELETE FROM variety WHERE school_id = ?';
-    var queryData = [school_id];
-
+//
+//
+//
+exports.delete = function(variety_id, callback) {
+    var query = 'DELETE FROM variety WHERE variety_id = ?';
+    var queryData = [variety_id];
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
     });
-
 };
-
+//
+//
+//
+/*
 exports.update = function(params, callback) {
     var query = 'UPDATE variety SET school_name = ?, address_id = ? WHERE school_id = ?';
     var queryData = [params.school_name, params.address_id, params.school_id];

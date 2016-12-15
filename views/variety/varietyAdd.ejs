@@ -1,0 +1,18 @@
+<%- include("../includes/header.ejs", {title:"Add New Variety"}); %>
+<h1>Add New Variety</h1>
+
+<form action="/variety/insert" method="get">
+
+    <input type="hidden" id="variety_id" name="variety_id" value="<%= result.variety_id %>">
+
+    Please input the Variety Name: <input id="variety_name" name="variety_name" type="text" />
+    <br />
+    <br />
+
+    <input type="submit" onclick="return alert('Submission Successful!');" />
+</form>
+
+<br />
+<a href="/variety/all">~ Go Back ~</a>
+
+<%- include("../includes/footer.ejs"); %>

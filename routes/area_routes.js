@@ -10,7 +10,7 @@ router.get('/all', function(req, res) {
             res.send(err);
         }
         else {
-            res.render('area/areaViewAll', { 'result':result });
+            res.render('area/areaViewAll', {'result':result});
         }
     });
 
@@ -49,18 +49,15 @@ router.get('/edit', function(req, res){
 });
 //
 //
-//
-
-/*
 // Return the add a new area form
 router.get('/add', function(req, res){
     // passing all the query parameters (req.query) to the insert function instead of each individually
-    address_dal.getAll(function(err,result) {
+    area_dal.getAll(function(err,result) {
         if (err) {
             res.send(err);
         }
         else {
-            res.render('area/schoolAdd', {'address': result});
+            res.render('area/areaAdd', {'result': result});
         }
     });
 });
@@ -68,17 +65,14 @@ router.get('/add', function(req, res){
 // View the area for the given id
 router.get('/insert', function(req, res){
     // simple validation
-    if(req.query.school_name == null) {
-        res.send('School Name must be provided.');
-    }
-    else if(req.query.address_id == null) {
-        res.send('An Address must be selected');
+    if(req.query.area_name == '') {
+        res.send('Please enter a School Name!');
     }
     else {
         // passing all the query parameters (req.query) to the insert function instead of each individually
-        school_dal.insert(req.query, function(err,result) {
+        area_dal.insert(req.query, function(err,result) {
             if (err) {
-                console.log(err)
+                console.log(err);
                 res.send(err);
             }
             else {
@@ -88,56 +82,45 @@ router.get('/insert', function(req, res){
         });
     }
 });
-
-router.get('/edit', function(req, res){
-    if(req.query.school_id == null) {
-        res.send('A area id is required');
+//
+//
+// Delete a area for the given area_id
+router.get('/delete', function(req, res){
+    if(req.query.area_id == null) {
+        res.send('area_id is null');
     }
     else {
-        school_dal.edit(req.query.school_id, function(err, result){
-            res.render('area/schoolUpdate', {area: result[0][0], address: result[1]});
+        area_dal.delete(req.query.area_id, function(err, result){
+            if(err) {
+                res.send(err);
+            }
+            else {
+                //poor practice, but we will handle it differently once we start using Ajax
+                res.redirect(302, '/area/all');
+            }
         });
     }
-
 });
-
-router.get('/edit2', function(req, res){
-   if(req.query.school_id == null) {
-       res.send('A area id is required');
-   }
-   else {
-       school_dal.getById(req.query.school_id, function(err, area){
-           address_dal.getAll(function(err, address) {
-               res.render('area/schoolUpdate', {area: area[0], address: address});
-           });
-       });
-   }
-
+//
+//
+//
+router.get('/edit', function(req, res){
+    if(req.query.area_id == null) {
+        res.send('An area id is required');
+    }
+    else {
+        area_dal.getById(req.query.area_id, function(err, area) {
+                res.render('area/areaUpdate', {area: area});
+        });
+    }
 });
-
+//
+//
+//
 router.get('/update', function(req, res){
-    school_dal.update(req.query, function(err, result){
+    area_dal.update(req.query, function(err, result){
        res.redirect(302, '/area/all');
     });
 });
 
-// Delete a area for the given school_id
-router.get('/delete', function(req, res){
-    if(req.query.school_id == null) {
-        res.send('school_id is null');
-    }
-    else {
-         school_dal.delete(req.query.school_id, function(err, result){
-             if(err) {
-                 res.send(err);
-             }
-             else {
-                 //poor practice, but we will handle it differently once we start using Ajax
-                 res.redirect(302, '/area/all');
-             }
-         });
-    }
-});
-
-*/
 module.exports = router;

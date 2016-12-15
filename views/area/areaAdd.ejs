@@ -1,0 +1,18 @@
+<%- include("../includes/header.ejs", {title:"Add New Area"}); %>
+    <h1>Add New Area</h1>
+
+    <form action="/area/insert" method="get">
+
+        <input type="hidden" id="area_id" name="area_id" value="<%= result.area_id %>">
+
+        Please input the Area Name: <input id="area_name" name="area_name" type="text" />
+        <br />
+        <br />
+
+        <input type="submit" onclick="return alert('Submission Successful!');" />
+    </form>
+
+<br />
+<a href="/area/all">~ Go Back ~</a>
+
+<%- include("../includes/footer.ejs"); %>

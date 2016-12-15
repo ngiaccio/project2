@@ -46,17 +46,14 @@ exports.insert = function(params, callback) {
 //
 //
 //
- /*
-exports.delete = function(school_id, callback) {
-    var query = 'DELETE FROM winery WHERE school_id = ?';
-    var queryData = [school_id];
-
+exports.delete = function(winery_id, callback) {
+    var query = 'DELETE FROM winery WHERE winery_id = ?';
+    var queryData = [winery_id];
     connection.query(query, queryData, function(err, result) {
         callback(err, result);
     });
-
 };
-
+/*
 exports.update = function(params, callback) {
     var query = 'UPDATE winery SET school_name = ?, address_id = ? WHERE school_id = ?';
     var queryData = [params.school_name, params.address_id, params.school_id];

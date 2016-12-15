@@ -2,23 +2,38 @@
 
 <h1 align="center">Available Area Information</h1>
 
-        <br />
+    <br />
+
+<%= %>
 
 <p align="center"><u>The database currently has wines stored from these Areas:</u></p>
     <table align="center" border="1">
-            <tr><th>~ Area Name</th>
+            <tr><th>~ Area Name</th><th>~ Actions</th>
             <col width="180">
+                <col width="75">
 
-            <% for(var i=0; result.length > i; i++ ) { %>
-            <tr>
+                <% for(var i=0; result.length > i; i++ ) { %>
+                <tr>
+
                 <td align="center"><%= result[i].area_name %></td>
+
+                <td align="center">
+                    <form action="/area/delete/" style="display:inline;" onclick="return confirm('Are you sure you want to delete <%= result[i].area_name %> from the database?');" >
+                    <input type="hidden" name="area_id" id="area_id" value="<%= result[i].area_id %>" />
+                    <input type="submit" value="Delete Entry"/>
+                </form>
+                </td>
+
             </tr>
+
             <% } %>
+
         </table>
 
 <br />
-<br />
-<a href="/"><p style="text-align:center">~ Back to Home ~</p></a>
 
+<a href="/area/add"><p style="text-align:center">Add a New Area to the Database</p></a>
+
+<a href="/"><p style="text-align:center">~ Back to Home ~</p></a>
 
 <%- include("../includes/footer.ejs"); %>

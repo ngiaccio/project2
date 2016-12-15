@@ -5,11 +5,12 @@
         <br />
 <p align="center"><u>Here is all the information stored in the database about each Winery:</u></p>
         <table align="center" border="1">
-            <tr><th>~ Winery Name</th><th>~ Winery Location</th><th>~ Contact Info</th><th>~ Walk Ins?</th></tr>
+            <tr><th>~ Winery Name</th><th>~ Winery Location</th><th>~ Contact Info</th><th>~ Walk Ins?</th><th>~ Actions</th></tr>
             <col width="200">
             <col width="150">
             <col width="100">
             <col width="100">
+            <col width="75">
             <% for(var i=0; result.length > i; i++ ) { %>
             <tr>
                 <td align="center"><%= result[i].winery_name %></td>
@@ -21,6 +22,12 @@
                     <% if (result[i].walk_ins == 0) { %>
                     No <% } %>
 
+                <td align="center">
+                    <form action="/winery/delete/" style="display:inline;" onclick="return confirm('Are you sure you want to delete <%= result[i].winery_name %> from the database?');" >
+                        <input type="hidden" name="winery_id" id="winery_id" value="<%= result[i].winery_id %>" />
+                        <input type="submit" value="Delete Entry"/>
+                    </form>
+                </td>
             </tr>
             <% } %>
         </table>
@@ -30,6 +37,5 @@
 <a href="/winery/add"><p style="text-align:center">Add a New Winery to the Database</p></a>
 
 <a href="/"><p style="text-align:center">~ Back to Home ~</p></a>
-
 
 <%- include("../includes/footer.ejs"); %>

@@ -80,7 +80,7 @@ router.get('/insert', function(req, res){
         // passing all the query parameters (req.query) to the insert function instead of each individually
         winery_dal.insert(req.query, function(err,result) {
             if (err) {
-                console.log(err)
+                console.log(err);
                 res.send(err);
             }
             else {
@@ -92,7 +92,23 @@ router.get('/insert', function(req, res){
 });
 //
 //
-//
+// Delete a winery for the given winery_id
+router.get('/delete', function(req, res){
+    if(req.query.winery_id == null) {
+        res.send('winery_id is null');
+    }
+    else {
+        winery_dal.delete(req.query.winery_id, function(err, result){
+            if(err) {
+                res.send(err);
+            }
+            else {
+                //poor practice, but we will handle it differently once we start using Ajax
+                res.redirect(302, '/winery/all');
+            }
+        });
+    }
+});
 /*
 router.get('/edit', function(req, res){
     if(req.query.school_id == null) {
@@ -124,24 +140,6 @@ router.get('/update', function(req, res){
     school_dal.update(req.query, function(err, result){
        res.redirect(302, '/winery/all');
     });
-});
-
-// Delete a winery for the given school_id
-router.get('/delete', function(req, res){
-    if(req.query.school_id == null) {
-        res.send('school_id is null');
-    }
-    else {
-         school_dal.delete(req.query.school_id, function(err, result){
-             if(err) {
-                 res.send(err);
-             }
-             else {
-                 //poor practice, but we will handle it differently once we start using Ajax
-                 res.redirect(302, '/winery/all');
-             }
-         });
-    }
 });
 
 */

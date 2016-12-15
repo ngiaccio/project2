@@ -49,18 +49,15 @@ router.get('/edit', function(req, res){
 });
 //
 //
-//
-
-/*
 // Return the add a new variety form
 router.get('/add', function(req, res){
     // passing all the query parameters (req.query) to the insert function instead of each individually
-    address_dal.getAll(function(err,result) {
+    variety_dal.getAll(function(err,result) {
         if (err) {
             res.send(err);
         }
         else {
-            res.render('variety/schoolAdd', {'address': result});
+            res.render('variety/varietyAdd', {'result': result});
         }
     });
 });
@@ -68,17 +65,14 @@ router.get('/add', function(req, res){
 // View the variety for the given id
 router.get('/insert', function(req, res){
     // simple validation
-    if(req.query.school_name == null) {
-        res.send('School Name must be provided.');
-    }
-    else if(req.query.address_id == null) {
-        res.send('An Address must be selected');
+    if(req.query.variety_name == '') {
+        res.send('Please enter a Variety Name!');
     }
     else {
         // passing all the query parameters (req.query) to the insert function instead of each individually
-        school_dal.insert(req.query, function(err,result) {
+        variety_dal.insert(req.query, function(err,result) {
             if (err) {
-                console.log(err)
+                console.log(err);
                 res.send(err);
             }
             else {
@@ -88,7 +82,26 @@ router.get('/insert', function(req, res){
         });
     }
 });
-
+//
+//
+// Delete a variety for the given variety_id
+router.get('/delete', function(req, res){
+    if(req.query.variety_id == null) {
+        res.send('variety_id is null');
+    }
+    else {
+        variety_dal.delete(req.query.variety_id, function(err, result){
+            if(err) {
+                res.send(err);
+            }
+            else {
+                //poor practice, but we will handle it differently once we start using Ajax
+                res.redirect(302, '/variety/all');
+            }
+        });
+    }
+});
+/*
 router.get('/edit', function(req, res){
     if(req.query.school_id == null) {
         res.send('A variety id is required');
@@ -119,24 +132,6 @@ router.get('/update', function(req, res){
     school_dal.update(req.query, function(err, result){
        res.redirect(302, '/variety/all');
     });
-});
-
-// Delete a variety for the given school_id
-router.get('/delete', function(req, res){
-    if(req.query.school_id == null) {
-        res.send('school_id is null');
-    }
-    else {
-         school_dal.delete(req.query.school_id, function(err, result){
-             if(err) {
-                 res.send(err);
-             }
-             else {
-                 //poor practice, but we will handle it differently once we start using Ajax
-                 res.redirect(302, '/variety/all');
-             }
-         });
-    }
 });
 
 */
